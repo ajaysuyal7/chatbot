@@ -14,7 +14,7 @@ st.write(
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
 # ask For the API Key Securely
-groq_api_key = st.text_input("Groq API Key", type="password")
+groq_api_key = st.secrets["groq"]["api_key"]
 
 if not groq_api_key:
     st.info("Please add your Groq API key to continue.", icon="🗝️")
