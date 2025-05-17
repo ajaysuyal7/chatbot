@@ -12,11 +12,13 @@ st.write(
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
+
+# ask For the API Key Securely
 groq_api_key = st.text_input("Groq API Key", type="password")
-if not openai_api_key:
+
+if not groq_api_key:
     st.info("Please add your Groq API key to continue.", icon="🗝️")
 else:
-
     # Create an Groq client.
     client = GroqClient(api_key=Groq_api_key)
 
@@ -25,22 +27,23 @@ else:
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
-    # Display the existing chat messages via `st.chat_message`.
+    # Display the existing chat messages via `st.chat_message`.(display previous message)
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
     # Create a chat input field to allow the user to enter a message. This will display
     # automatically at the bottom of the page.
-    if prompt := st.chat_input("What is up?"):
 
+    # user input
+    if prompt := st.chat_input("What is up?"):
         # Store and display the current prompt.
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
-        # Generate a response using the OpenAI API.
-        stream = client.chat.completions.create(
+        # Generate a response using the groq API.
+        response = client.chat.completions.create(
             model="llama-3",
             messages=[
                 {"role": m["role"], "content": m["content"]}
@@ -51,6 +54,8 @@ else:
 
         # Stream the response to the chat using `st.write_stream`, then store it in 
         # session state.
+        
+        # Diaplay assistant response
         with st.chat_message("assistant"):
             st.markdown(response["choices"][0]["message"]["content"])
         st.session_state.messages.append({"role": "assistant", "content": response["choices"][0]["message"]["content"]})
