@@ -1,8 +1,20 @@
-# 💬 Chatbot template
+# 🤖 Groq-Powered Chatbot
 
-A simple Streamlit app that shows how to build a chatbot using Groq api.
+This is a simple chatbot powered by Groq and Streamlit.
 
-[![Open in Streamlit]([https://chatbot-template.streamlit.app/](https://chatbot-dzn5jil9axgrb74tf4hkpm.streamlit.app/))
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://chatbot-dzn5jil9axgrb74tf4hkpm.streamlit.app/)
+
+## Features
+
+- LLaMA-3-70B responses via Groq API
+- Clean Streamlit UI
+- Supports streaming responses
+
+## Run Locally
+
+```bash
+pip install streamlit python-dotenv groq
+streamlit run app.py
 
 ### How to run it on your own machine
 
