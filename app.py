@@ -5,12 +5,10 @@ import os
 
 # Load environment variables
 load_dotenv()
-GROQ_API_KEY=os.getenv("GROQ_API_KEY")
-if GROQ_API_KEY is None:
-    raise ValueError("groq_api_key is missing check Your File")
+API_KEY="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"
 
 # Initialize Groq client
-client = Groq(api_key=GROQ_API_KEY)
+client = Groq(api_key=API_KEY)
 
 # Configure Streamlit page
 st.set_page_config(page_title="Chatbot", page_icon="🤖")
